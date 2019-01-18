@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>
+            DagBok
+        </title>
+        
+                <style>
+                
+                </style>
+    </head>
+<body>
+        <div class="container">
+                <H1>Dagbok</H1>
+           <h4>Your Title<br> <input value="" type="text" name="tittle" id="tittle" placeholder="the tittle "></h4>
+           <h4>Date <br> <input value="" type="date" name="date" id="date"></h4>
+           <textarea value="text" name="text" id="info" cols="60" rows="20" placeholder="Description"></textarea>
+            <br><br><br>
+            <button onclick="button()" type="submit">Save it</button>
+        </div> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script>
+          
+                        
+                   
+                $(document).ready(function(){
+                if (localStorage.dagbok== null){
+                    console.log("vi skapar array")
+                              dagbok = [{
+                                        "tittle":"Hello World!",
+                                        "date": "5/10/2019",
+                                        "text": "This is my First post"
+                                         }];
+                                         console.log(dagbok);
+
+                        // use stringify to save dagbok to localStorage.dagbok
+                    var json_str= JSON.stringify(dagbok);
+                    localStorage.dagbok= json_str;
+
+                    console.log(localStorage.dagbok);
+                        // call your function
+                       
+                    }
+
+                         loopydagbok();
+
+                function loopydagbok() { 
+                    console.log("i loop funktionen")
+                    console.log(localStorage.dagbok);
+                    // use parse to get array from localStorage.dagbok
+                    // use array to for loop
+                    var loopArray= JSON.parse(localStorage.dagbok);
+                    for (var index = 0; index < loopArray.length; index++) {
+                        console.log()
+                        console.log(loopArray[index].tittle);
+                        console.log(loopArray[index].date);
+                        console.log(loopArray[index].text);
+                        
+                    
+                    }
+                }
+
+               
+                
+               
+        
+            });
+            function button(){
+                    title = $('#tittle').val();
+                    date = $('#date').val();
+                    tex = $('#info').val();
+                    dagbok = [{
+                                        "tittle":title,
+                                        "date": date,
+                                        "text": tex
+                                         }];
+                                         console.log(dagbok);
+                                         var json_str= JSON.stringify(dagbok);
+                    localStorage.dagbok= json_str;
+
+                    console.log(localStorage.dagbok);
+                }
+
+               
+
+                
+            </script>
+                
+</body>
+</html>
